@@ -5,7 +5,7 @@ import {
 import {createStore,applyMiddleware} from 'redux';
 import {Provider,connect} from 'react-redux';
 import reduxLogger from 'redux-logger';
-import reducers from './src/reducers/reducers';
+import reducers from './src/reducers';
 import AppNavigation from './src/components/screens/AppNavigation';
 
 
