@@ -16,7 +16,7 @@ import mySaga from './src/sagas'
 
 const store = createStore(reducers,applyMiddleware(reduxLogger,epicMiddleware,sagaMiddleware));
 
-sagaMiddleware.run(mySaga);
+// sagaMiddleware.run(mySaga);
 console.disableYellowBox = true;
 
 type Props = {};
