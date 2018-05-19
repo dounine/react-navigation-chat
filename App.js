@@ -1,32 +1,24 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-} from 'react-native';
-import {createStore,applyMiddleware} from 'redux';
-import {Provider,connect} from 'react-redux';
-import reduxLogger from 'redux-logger';
-import reducers from './src/reducers';
+import React, {Component} from 'react';
+import {AsyncStorage} from 'react-native';
+import {Provider} from 'react-redux';
 import AppNavigation from './src/components/screens/AppNavigation';
-import { createEpicMiddleware } from 'redux-observable';
-import createSagaMiddleware from 'redux-saga'
-const sagaMiddleware = createSagaMiddleware();
-import fetchUserEpic from './src/epic';
-const epicMiddleware = createEpicMiddleware(fetchUserEpic);
-import mySaga from './src/sagas'
+import {PersistGate} from 'redux-persist/integration/react'
+import configureStore from './src/store/persistor';
+const {store,persistor} = configureStore();
 
-const store = createStore(reducers,applyMiddleware(reduxLogger,epicMiddleware,sagaMiddleware));
 
-// sagaMiddleware.run(mySaga);
 console.disableYellowBox = true;
 
 type Props = {};
 export default class App extends Component<Props> {
 
-  render() {
-    return (
-        <Provider store={store}>
-            <AppNavigation/>
-        </Provider>
-    );
-  }
+    render() {
+        return (
+            <Provider store={store}>
+                <PersistGate loading={null} persistor={persistor}>
+                    <AppNavigation/>
+                </PersistGate>
+            </Provider>
+        );
+    }
 }

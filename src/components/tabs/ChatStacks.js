@@ -8,4 +8,8 @@ import ChatConversation from './chat/ChatConversation';
 export default createStackNavigator({
     Messages,
     ChatConversation
+},{
+    initialRouteParams:{
+        connect:true
+    }
 });

@@ -2,9 +2,9 @@ const initState = {
     count: 0 ,
     fetchUserLoading:false,
     value:'world'
-}
+};
 
-export default (state = initState, action) => {
+export default function rootReducer(state = initState, action){
     switch (action.type) {
         case 'change':
             return { ...state,value: action.value };
